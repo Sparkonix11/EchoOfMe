@@ -48,7 +48,7 @@ export default function Hero() {
         <div className="w-full md:w-1/2 flex justify-center mb-10 md:mb-0">
           {/* Profile Image */} 
           <image 
-            src="images/profile-placeholder.jpg" // Using relative path without leading slash
+            src="../assets/profile-placeholder.jpg" // Using relative path without leading slash
             alt="Abhishek" 
             width={500}
             height={700}
