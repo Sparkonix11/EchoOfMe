@@ -1,0 +1,335 @@
+@import "tailwindcss";
+
+:root {
+  /* Base colors */
+  --background: #ffffff;
+  --foreground: #161616;
+  
+  /* Primary colors */
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+  --primary-light: #3b82f6;
+  
+  /* Accent colors */
+  --accent: #8b5cf6;
+  --accent-dark: #7c3aed;
+  --accent-light: #a78bfa;
+  
+  /* Neutral colors */
+  --neutral-100: #f5f5f5;
+  --neutral-200: #e5e5e5;
+  --neutral-300: #d4d4d4;
+  --neutral-400: #a3a3a3;
+  --neutral-500: #737373;
+  --neutral-600: #525252;
+  --neutral-700: #404040;
+  --neutral-800: #262626;
+  --neutral-900: #171717;
+  
+  /* Grid system */
+  --container-padding: 24px;
+  --grid-gap: 24px;
+  
+  /* Typography */
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-size-display: clamp(3rem, 8vw, 6rem);
+  --font-size-h1: clamp(2.5rem, 6vw, 4rem);
+  --font-size-h2: clamp(2rem, 4vw, 3rem);
+  --font-size-h3: clamp(1.5rem, 3vw, 2rem);
+  --font-size-large: 1.25rem;
+  --font-size-body: 1rem;
+  --font-size-small: 0.875rem;
+  
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+  
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+  
+  /* Shadows */
+  --shadow-sm: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0px 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0px 10px 15px -3px rgba(0, 0, 0, 0.1), 0px 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0px 20px 25px -5px rgba(0, 0, 0, 0.1), 0px 10px 10px -5px rgba(0, 0, 0, 0.04);
+  
+  /* Border radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0f0f0f;
+    --foreground: #f5f5f5;
+    
+    /* Adjust colors for dark mode */
+    --primary: #3b82f6;
+    --primary-dark: #2563eb;
+    --primary-light: #60a5fa;
+    
+    --accent: #a78bfa;
+    --accent-dark: #8b5cf6;
+    --accent-light: #c4b5fd;
+  }
+}
+
+/* Typography Reset */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+  margin-bottom: var(--space-6);
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+  margin-bottom: var(--space-6);
+}
+
+h3 {
+  font-size: var(--font-size-h3);
+  margin-bottom: var(--space-4);
+}
+
+p {
+  margin-bottom: var(--space-4);
+  line-height: 1.6;
+}
+
+/* Grid Layout System */
+.grid-layout {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--grid-gap);
+}
+
+/* Modern Container */
+.container-modern {
+  width: 100%;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+}
+
+/* Utility Classes */
+.text-balance {
+  text-wrap: balance;
+}
+
+.text-gradient {
+  background: linear-gradient(to right, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+}
+
+.text-gradient-reverse {
+  background: linear-gradient(to right, var(--accent), var(--primary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+}
+
+/* Button Styles */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 2rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  border: 2px solid transparent;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-dark);
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 2px solid var(--neutral-300);
+  color: var(--foreground);
+}
+
+.btn-outline:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* Special accent element */
+.accent-bar {
+  height: 4px;
+  background: linear-gradient(to right, var(--primary), var(--accent));
+  width: 80px;
+  margin-bottom: var(--space-4);
+}
+
+/* Modern Card */
+.card-modern {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background-color: var(--background);
+  box-shadow: var(--shadow-md);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.card-modern:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+/* Animated background for sections */
+.grid-background {
+  background-image: 
+    linear-gradient(to right, var(--neutral-200) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--neutral-200) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .grid-background {
+    background-image: 
+      linear-gradient(to right, var(--neutral-800) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--neutral-800) 1px, transparent 1px);
+  }
+}
+
+/* Custom cursor styles */
+html.has-custom-cursor {
+  cursor: none !important;
+}
+
+html.has-custom-cursor * {
+  cursor: none !important;
+}
+
+/* Cursor ring styling */
+.cursor-ring {
+  pointer-events: none;
+  position: fixed;
+  z-index: 9999;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border: 2px solid var(--primary);
+  transition: width 0.3s, height 0.3s, border-color 0.3s;
+  will-change: transform;
+  left: 0;  /* Initial position to ensure it's in the DOM */
+  top: 0;
+}
+
+/* Effect when clicking */
+.cursor-ring--clicked {
+  width: 34px;
+  height: 34px;
+  border-color: var(--accent);
+}
+
+/* Effect when hovering over links */
+.cursor-ring--hover {
+  width: 60px;
+  height: 60px;
+  border-color: var(--accent-light);
+  border-width: 3px;
+}
+
+/* Hide trail dots completely */
+.trail-dot, .trail-container {
+  display: none;
+}
+
+/* Dark mode styles */
+html.dark .cursor-ring {
+  border-color: var(--accent-light);
+}
+
+/* Responsive - hide on mobile */
+@media (max-width: 768px) {
+  .cursor-ring {
+    display: none;
+  }
+}
+
+/* Cursor trail elements */
+.cursor-trail {
+  pointer-events: none;
+  position: absolute;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 2px solid var(--primary);
+  transform: translate(-50%, -50%);
+  transition: transform 0.15s ease-out, opacity 0.3s ease;
+  will-change: transform;
+}
+
+/* Dark mode trail styles */
+html.dark .cursor-trail,
+.cursor-trail.dark {
+  border-color: var(--accent-light);
+}
+
+/* Trail effects on click */
+.trails-clicked .cursor-trail {
+  border-color: var(--accent);
+  transform: translate(-50%, -50%) scale(0.9);
+}
+
+/* Trail effects on hover */
+.trails-hover .cursor-trail {
+  border-color: var(--accent-light);
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* Hide trails on mobile */
+@media (max-width: 768px) {
+  .cursor-trail, .cursor-trails {
+    display: none;
+  }
+}
