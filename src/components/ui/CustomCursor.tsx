@@ -27,6 +27,18 @@ const CustomCursor = () => {
     // Safety check for browser environment
     if (typeof window === 'undefined') return;
     
+    // Add global style to hide default cursor
+    const style = document.createElement('style');
+    style.textContent = `
+      html, body {
+        cursor: none !important;
+      }
+      a, button, [role="button"], input, textarea, select, details, [tabindex]:not([tabindex="-1"]) {
+        cursor: none !important;
+      }
+    `;
+    document.head.appendChild(style);
+    
     // Create trail elements
     const createTrailElements = () => {
       if (!trailsContainerRef.current) return;
@@ -274,6 +286,9 @@ const CustomCursor = () => {
         el.removeEventListener('mouseenter', handleLinkEnter);
         el.removeEventListener('mouseleave', handleLinkLeave);
       });
+
+      // Remove the global style when component unmounts
+      document.head.removeChild(style);
     };
   }, [theme, trailCount, trailEasing]);
 
