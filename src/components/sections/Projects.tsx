@@ -81,10 +81,10 @@ export default function Projects() {
                 >
                   <div className="relative h-48 md:h-56">
                     {project.thumbnailUrl ? (
-                      <image
+                      <img
                         src={project.thumbnailUrl}
                         alt={project.title}
-                        className="object-cover"
+                        className="w-full h-full object-cover"
                         sizes="(max-width: 768px) 100vw, 50vw"
                       />
                     ) : (

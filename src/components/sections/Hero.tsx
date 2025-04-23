@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
-import { FaInstagram, FaBehance, FaFacebookF, FaDribbble } from 'react-icons/fa';
+import { SiLeetcode, SiGithub, SiLinkedin } from "react-icons/si";
+
 
 // Animation variants for staggered animations
 const containerVariants = {
@@ -83,11 +84,9 @@ export default function Hero() {
 
       {/* Social Icons Bottom Right */}
       <div className="absolute bottom-10 right-10 z-20 flex space-x-4">
-        {/* Replace # with actual links */}
-        <a href="#" aria-label="Instagram" className="text-neutral-400 hover:text-white transition-colors"><FaInstagram size={20} /></a>
-        <a href="#" aria-label="Behance" className="text-neutral-400 hover:text-white transition-colors"><FaBehance size={20} /></a>
-        <a href="#" aria-label="Facebook" className="text-neutral-400 hover:text-white transition-colors"><FaFacebookF size={20} /></a>
-        <a href="#" aria-label="Dribbble" className="text-neutral-400 hover:text-white transition-colors"><FaDribbble size={20} /></a>
+        <a href="https://github.com/Sparkonix11" aria-label="Github" className="text-neutral-400 hover:text-white transition-colors"><SiGithub size={20} /></a>
+        <a href="https://leetcode.com/u/Sparkonix/" aria-label="LeetCode" className="text-neutral-400 hover:text-white transition-colors"><SiLeetcode size={20} /></a>
+        <a href="https://www.linkedin.com/in/abhishek1102/" aria-label="LinkedIn" className="text-neutral-400 hover:text-white transition-colors"><SiLinkedin size={20} /></a>
       </div>
     </section>
   );
