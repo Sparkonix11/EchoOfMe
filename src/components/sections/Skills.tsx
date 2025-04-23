@@ -51,10 +51,10 @@ function SkillBar({ name, proficiency }: { name: string; proficiency: number }) 
   return (
     <div className="mb-4">
       <div className="flex justify-between items-center mb-1">
-        <span className="text-sm font-medium text-gray-800 dark:text-gray-200">{name}</span>
-        <span className="text-xs font-medium text-gray-500 dark:text-gray-400">{proficiency}%</span>
+        <span className="text-sm font-medium text-gray-800">{name}</span>
+        <span className="text-xs font-medium text-gray-600">{proficiency}%</span>
       </div>
-      <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
+      <div className="w-full bg-gray-200 rounded-full h-2.5">
         <motion.div
           className="h-2.5 rounded-full bg-gradient-to-r from-blue-500 to-purple-600"
           style={{ width: `${proficiency}%` }}
@@ -95,10 +95,15 @@ export default function Skills() {
   };
 
   return (
-    <section id="skills" ref={sectionRef} className="py-20 bg-white dark:bg-gray-900">
-      <div className="container mx-auto px-4">
+    <section id="skills" ref={sectionRef} className="py-20 bg-gray-50 dark:bg-gray-50 relative overflow-hidden">
+      {/* Background design elements - blobs */}
+      <div className="absolute top-0 left-0 w-96 h-96 bg-blue-100 dark:bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+      <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-purple-100 dark:bg-purple-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-100 dark:bg-indigo-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
+      
+      <div className="container mx-auto px-4 relative z-10 flex flex-col items-center">
         <motion.div
-          className="max-w-6xl mx-auto"
+          className="max-w-6xl mx-auto w-full"
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           variants={containerVariants}
@@ -108,7 +113,7 @@ export default function Skills() {
               My Skills
             </h2>
             <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto mb-6"></div>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            <p className="text-lg text-gray-700 max-w-3xl mx-auto">
               I&apos;ve developed a diverse set of skills throughout my academic journey and personal projects.
               Here&apos;s an overview of my technical expertise and competencies.
             </p>
@@ -117,7 +122,7 @@ export default function Skills() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12">
             {skillCategories.map((category) => (
               <motion.div key={category.name} variants={itemVariants} className="col-span-1">
-                <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">
+                <h3 className="text-xl font-bold mb-4 text-gray-900 text-center">
                   {category.name}
                 </h3>
                 <div className="space-y-4">
@@ -131,35 +136,35 @@ export default function Skills() {
 
           <motion.div 
             variants={itemVariants} 
-            className="mt-16 bg-gray-50 dark:bg-gray-800 p-6 md:p-8 rounded-lg shadow-md"
+            className="mt-16 bg-white dark:bg-white p-6 md:p-8 rounded-lg shadow-md backdrop-blur-sm bg-opacity-80"
           >
-            <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">
-              Additional Skills & Certifications
+            <h3 className="text-xl font-bold mb-4 text-gray-900 text-center">
+              Additional Skills & Interests
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div>
-                <h4 className="font-semibold text-gray-800 dark:text-gray-200 mb-2">Soft Skills</h4>
-                <ul className="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-1">
+              <div className="flex flex-col items-center">
+                <h4 className="font-semibold text-gray-800 mb-2 text-center">Soft Skills</h4>
+                <ul className="list-disc list-inside text-gray-700 space-y-1 mx-auto">
                   <li>Team Leadership</li>
                   <li>Project Management</li>
                   <li>Problem Solving</li>
                   <li>Communication</li>
                 </ul>
               </div>
-              <div>
-                <h4 className="font-semibold text-gray-800 dark:text-gray-200 mb-2">Languages</h4>
-                <ul className="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-1">
-                  <li>English (Native)</li>
-                  <li>Spanish (Intermediate)</li>
-                  <li>French (Basic)</li>
+              <div className="flex flex-col items-center">
+                <h4 className="font-semibold text-gray-800 mb-2 text-center">Languages</h4>
+                <ul className="list-disc list-inside text-gray-700 space-y-1 mx-auto">
+                  <li>Hindi (Native)</li>
+                  <li>English (Fluent)</li>
                 </ul>
               </div>
-              <div>
-                <h4 className="font-semibold text-gray-800 dark:text-gray-200 mb-2">Certifications</h4>
-                <ul className="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-1">
-                  <li>AWS Certified Developer</li>
-                  <li>Google UX Design Certificate</li>
-                  <li>Meta Front-End Developer</li>
+              <div className="flex flex-col items-center">
+                <h4 className="font-semibold text-gray-800 mb-2 text-center">Areas of Interest</h4>
+                <ul className="list-disc list-inside text-gray-700 space-y-1 mx-auto">
+                  <li>Artificial Intelligence</li>
+                  <li>Web Development</li>
+                  <li>UI/UX Design</li>
+                  <li>Cloud Computing</li>
                 </ul>
               </div>
             </div>

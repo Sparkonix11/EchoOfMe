@@ -22,7 +22,6 @@ function App() {
     <Router>
       <ThemeProvider>
         <Helmet>
-          <title>EchoOfMe | Creative Portfolio</title>
           <meta name="description" content="A portfolio showcasing my journey, skills, and projects as a college student." />
           <meta name="keywords" content="portfolio, college, student, projects, skills, resume" />
           <html lang="en" className="scroll-smooth has-custom-cursor" />

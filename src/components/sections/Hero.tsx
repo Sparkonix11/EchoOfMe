@@ -75,7 +75,7 @@ export default function Hero() {
               variants={itemVariants}
               className="text-xl md:text-2xl text-neutral-400 tracking-wide"
             >
-              Student.
+              Code. Create. Collaborate.
             </motion.p>
           </motion.div>
         </div>

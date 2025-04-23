@@ -43,7 +43,11 @@ export default function About() {
             animate={isInView ? "visible" : "hidden"}
             className="hidden md:block absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-1/3 rotate-[-90deg]"
           >
-            <h2 className="text-[120px] font-bold text-neutral-100 tracking-widest whitespace-nowrap">
+            <h2 className="text-6xl font-bold text-neutral-100 tracking-widest whitespace-nowrap" style={{
+              WebkitTextStroke: '1px black',
+              color: 'transparent',
+              fontSize: 'clamp(4rem, 8vw, 8rem)' // Adding responsive font sizing for better scaling
+            }}>
               ABOUT ME
             </h2>
           </motion.div>
@@ -81,19 +85,17 @@ export default function About() {
                 Abhishek
               </h3>
               <p className="text-lg md:text-xl text-neutral-500 mb-6">
-                Student.
+                Data Science Student @ IIT Madras
               </p>
-              {/* Placeholder text - replace with actual content */}
               <p className="mb-4 leading-relaxed">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ipsum massa, hendrerit nec justo ac, luctus euismod sem. Nulla pellentesque dignissim rhoncus. Quisque lacinia mi a nunc interdum, non semper felis dapibus. In hac habitasse platea dictumst. Nunc vitae rhoncus turpis. Aenean laoreet est in orci sagittis, in luctus dolor porta.
+                I'm an aspiring software developer and artificial intelligence enthusiast, currently pursuing a BS in Data Science and Applications from IIT Madras. With a solid foundation in data structures, algorithms, and programming principles, I’m passionate about building scalable and meaningful tech solutions. Whether it’s crafting clean backend logic or designing intelligent systems, I find joy in solving real-world problems through code.
               </p>
               <p className="mb-8 leading-relaxed">
-                Nunc id hendrerit elit, sit amet efficitur turpis. Duis gravida hendrerit augue a semper. Phasellus ac.
+                I’m actively working on projects that blend data, code, and creativity — including building predictive models, exploring text sentiment analysis, and developing sleek, interactive websites. Beyond academics, I regularly challenge myself with competitive programming on platforms like LeetCode and Codeforces. I'm always eager to explore the next big thing in AI, cloud computing, and full-stack development.
               </p>
-              
               {/* Skills/Tools Icons */}
               <div className="flex items-center space-x-4">
-                <span className="text-neutral-500 text-sm font-medium">Tools:</span>
+                {/* <span className="text-neutral-500 text-sm font-medium">Tools:</span> */}
                 {/* Replace with actual icons/logos */}
                   {/* <SiAdobePhotoshop size={28} className="text-neutral-600 hover:text-black transition-colors" title="Photoshop" />
                   <SiAdobePremierePro size={28} className="text-neutral-600 hover:text-black transition-colors" title="Premiere Pro" />

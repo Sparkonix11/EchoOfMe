@@ -8,7 +8,7 @@ export const projects: Project[] = [
     technologies: ['Vue.js', 'Python', 'Flask', 'JavaScript', 'Tailwind CSS', 'Docker', 'OpenAI API'],
     thumbnailUrl: '/images/projects/knowtopia-placeholder.jpg',
     videoUrl: 'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4', // Placeholder
-    liveUrl: 'https://github.com/Sparkonix11/Knowtopia',
+    // liveUrl: 'https://github.com/Sparkonix11/Knowtopia',
     sourceUrl: 'https://github.com/Sparkonix11/Knowtopia',
     screenshots: []
   },
@@ -37,7 +37,7 @@ export const projects: Project[] = [
     technologies: ['Vue.js', 'Vite', 'Python', 'Flask', 'SQLite', 'JavaScript', 'CSS', 'JWT'],
     thumbnailUrl: '/images/projects/kitaab-placeholder.jpg',
     videoUrl: 'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4', // Placeholder
-    liveUrl: 'https://github.com/Sparkonix11/Kitaab',
+    // liveUrl: 'https://github.com/Sparkonix11/Kitaab',
     sourceUrl: 'https://github.com/Sparkonix11/Kitaab',
   },
   {

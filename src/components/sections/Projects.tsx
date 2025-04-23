@@ -72,7 +72,7 @@ export default function Projects() {
               <motion.div
                 key={project.id}
                 variants={itemVariants}
-                className="bg-white dark:bg-gray-900 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
+                className="bg-white dark:bg-gray-900 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow flex flex-col"
               >
                 {/* Project Card */}
                 <div 
@@ -100,22 +100,24 @@ export default function Projects() {
                   </div>
                 </div>
 
-                <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">{project.title}</h3>
-                  <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-2">{project.description}</p>
-                  
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.technologies.map((tech) => (
-                      <span 
-                        key={`${project.id}-${tech}`}
-                        className="text-xs px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-gray-700 dark:text-gray-300"
-                      >
-                        {tech}
-                      </span>
-                    ))}
+                <div className="p-6 flex flex-col flex-grow">
+                  <div>
+                    <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">{project.title}</h3>
+                    <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-2">{project.description}</p>
+                    
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {project.technologies.map((tech) => (
+                        <span 
+                          key={`${project.id}-${tech}`}
+                          className="text-xs px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-gray-700 dark:text-gray-300"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                   
-                  <div className="flex justify-between items-center">
+                  <div className="flex justify-between items-center mt-auto border-t border-gray-100 dark:border-gray-800 pt-4">
                     <button
                       onClick={() => handleProjectClick(project)}
                       className="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 font-medium flex items-center gap-1"
