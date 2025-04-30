@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { SiLeetcode, SiGithub, SiLinkedin } from "react-icons/si";
-
+import HeroScene from '../three/HeroScene';
 
 // Animation variants for staggered animations
 const containerVariants = {
@@ -45,21 +45,15 @@ export default function Hero() {
 
       {/* Main Content Area */}
       <div className="container-modern relative z-10 flex flex-col md:flex-row items-center">
-        {/* Image Area (Left or Center based on design) */}
-        <div className="w-full md:w-1/2 flex justify-center mb-10 md:mb-0">
-          {/* Profile Image */} 
-          <image 
-            src="../assets/profile-placeholder.jpg" // Using relative path without leading slash
-            alt="Abhishek" 
-            width={500}
-            height={700}
-            className="object-cover filter grayscale contrast-125" 
-            priority
-          />
+        {/* 3D Scene Area (Left) */}
+        <div className="w-full md:w-1/2 h-[500px] mb-10 md:mb-0 relative">
+          <div className="absolute inset-0 z-10">
+            <HeroScene />
+          </div>
         </div>
 
         {/* Text Area (Right or Center based on design) */}
-        <div className="w-full md:w-1/2 text-center md:text-left md:pl-16">
+        <div className="w-full md:w-1/2 text-center md:text-left md:pl-16 z-20">
           <motion.div
             variants={containerVariants}
             initial="hidden"
