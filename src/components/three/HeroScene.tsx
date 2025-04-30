@@ -140,16 +140,8 @@ function Tesseract() {
 }
 
 export default function HeroScene() {
-  // Custom cursor style for better user experience
-  const [cursorStyle, setCursorStyle] = useState<'default' | 'pointer'>('default');
-
   return (
-    <div 
-      className="w-full h-full" 
-      style={{ cursor: cursorStyle }}
-      onMouseEnter={() => setCursorStyle('pointer')}
-      onMouseLeave={() => setCursorStyle('default')}
-    >
+    <div className="w-full h-full">
       <Canvas
         gl={{ 
           antialias: true,
