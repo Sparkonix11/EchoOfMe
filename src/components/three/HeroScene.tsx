@@ -286,36 +286,170 @@ function CodeGalaxy() {
   );
 }
 
-// Background that extends to fill the entire scene
+// Background that extends to fill the entire scene with animated flowing particles
 function ExtendedBackground() {
+  const particlesRef = useRef<THREE.Points>(null);
+  const particleCount = 2000; // Good count for distribution
+  
+  // Generate particle positions with a wider distribution
+  const particlesGeometry = useMemo(() => {
+    const positions = new Float32Array(particleCount * 3);
+    const colors = new Float32Array(particleCount * 3);
+    const sizes = new Float32Array(particleCount);
+    const velocity = new Float32Array(particleCount * 3);
+    
+    for (let i = 0; i < particleCount; i++) {
+      // Position - create a wider, deeper field
+      const i3 = i * 3;
+      positions[i3] = (Math.random() - 0.5) * 80;     // wider X spread
+      positions[i3 + 1] = (Math.random() - 0.5) * 80; // wider Y spread
+      positions[i3 + 2] = (Math.random() - 0.5) * 60 - 15; // deeper Z spread
+      
+      // Velocity - slower movement for subtler effect
+      velocity[i3] = (Math.random() - 0.5) * 0.008;     // X velocity
+      velocity[i3 + 1] = (Math.random() - 0.5) * 0.008; // Y velocity
+      velocity[i3 + 2] = (Math.random() - 0.5) * 0.004; // Z velocity
+      
+      // Size - MICROSCOPIC particles - almost invisible dots
+      const distanceFromCenter = Math.sqrt(
+        Math.pow(positions[i3], 2) + 
+        Math.pow(positions[i3 + 1], 2)
+      );
+      
+      // Scale sizes based on distance - use microscopic values
+      const sizeVariation = Math.max(0.4, 1 - distanceFromCenter / 80);
+      // Make particles truly microscopic
+      sizes[i] = (Math.random() * 0.0000025 + 0.0000015) * sizeVariation;
+      
+      // Colors - bright enough to be visible despite tiny size
+      const colorIntensity = Math.random() * 0.3 + 0.7; // 0.7 to 1.0
+      colors[i3] = colorIntensity;           // Red
+      colors[i3 + 1] = colorIntensity;       // Green 
+      colors[i3 + 2] = colorIntensity * 1.2; // Blue (enhanced blue tint)
+    }
+    
+    const geometry = new THREE.BufferGeometry();
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+    geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+    
+    // Store velocity data as a user-defined attribute for animation
+    geometry.userData.velocity = velocity;
+    
+    return geometry;
+  }, []);
+  
+  // Animate the particles
+  useFrame(({ clock }) => {
+    if (particlesRef.current) {
+      const time = clock.getElapsedTime();
+      const positions = particlesRef.current.geometry.attributes.position.array as Float32Array;
+      const velocity = particlesRef.current.geometry.userData.velocity as Float32Array;
+      const sizes = particlesRef.current.geometry.attributes.size.array as Float32Array;
+      
+      // Update each particle position and size
+      for (let i = 0; i < particleCount; i++) {
+        const i3 = i * 3;
+        
+        // Update positions based on velocity and add some wave-like movement
+        positions[i3] += velocity[i3];
+        positions[i3 + 1] += velocity[i3 + 1];
+        positions[i3 + 2] += velocity[i3 + 2];
+        
+        // Add subtle wave-like movement (reduced amplitude)
+        positions[i3] += Math.sin(time * 0.2 + i * 0.1) * 0.003;
+        positions[i3 + 1] += Math.cos(time * 0.15 + i * 0.05) * 0.003;
+        
+        // "Breathing" effect - subtle size variation (reduced amplitude)
+        sizes[i] = (Math.sin(time * 0.3 + i * 0.5) * 0.000005 + 0.00001) * 
+                   (1 - Math.abs(positions[i3 + 2]) / 60); // Size varies with Z distance
+        
+        // Boundary check - if a particle goes too far, reset its position
+        if (Math.abs(positions[i3]) > 40) {
+          positions[i3] = (Math.random() - 0.5) * 80;
+          velocity[i3] = (Math.random() - 0.5) * 0.008;
+        }
+        if (Math.abs(positions[i3 + 1]) > 40) {
+          positions[i3 + 1] = (Math.random() - 0.5) * 80;
+          velocity[i3 + 1] = (Math.random() - 0.5) * 0.008;
+        }
+        if (Math.abs(positions[i3 + 2]) > 30) {
+          positions[i3 + 2] = (Math.random() - 0.5) * 60 - 15;
+          velocity[i3 + 2] = (Math.random() - 0.5) * 0.004;
+        }
+      }
+      
+      // Update Three.js that these attributes have changed
+      particlesRef.current.geometry.attributes.position.needsUpdate = true;
+      particlesRef.current.geometry.attributes.size.needsUpdate = true;
+    }
+  });
+  
   return (
     <>
-      {/* Large background plane */}
-      <mesh position={[0, 0, -10]} rotation={[0, 0, 0]}>
-        <planeGeometry args={[50, 50]} />
+      {/* Dark background plane */}
+      <mesh position={[0, 0, -30]} rotation={[0, 0, 0]}>
+        <planeGeometry args={[150, 150]} />
         <meshBasicMaterial color="#050505" />
       </mesh>
       
-      {/* Particle field for depth */}
-      <points>
-        <bufferGeometry>
-          <float32BufferAttribute
-            attach="attributes-position"
-            count={1000}
-            array={(() => {
-              const arr = new Float32Array(3000);
-              for (let i = 0; i < 3000; i += 3) {
-                arr[i] = (Math.random() - 0.5) * 50;
-                arr[i + 1] = (Math.random() - 0.5) * 50;
-                arr[i + 2] = (Math.random() - 0.5) * 20 - 10;
-              }
-              return arr;
-            })()}
-            itemSize={3}
-          />
-        </bufferGeometry>
-        <pointsMaterial color="#ffffff" size={0.03} transparent opacity={0.2} />
+      {/* Animated particles */}
+      <points ref={particlesRef} geometry={particlesGeometry}>
+        <pointsMaterial
+          size={1}
+          sizeAttenuation={true}
+          transparent={true}
+          opacity={0.75} // Increased opacity for more brightness
+          vertexColors={true}
+          blending={THREE.AdditiveBlending}
+          map={(() => {
+            // Create a circular texture for perfect circles
+            const size = 64;
+            const center = size / 2;
+            const radius = size / 3; // Smaller radius for sharper dots
+            const canvas = document.createElement('canvas');
+            canvas.width = size;
+            canvas.height = size;
+            const ctx = canvas.getContext('2d')!;
+            
+            // Clear canvas with transparent background (not black)
+            ctx.clearRect(0, 0, size, size);
+            
+            // Create radial gradient for soft circle with sharper falloff
+            const gradient = ctx.createRadialGradient(
+              center, center, 0,
+              center, center, radius
+            );
+            gradient.addColorStop(0, 'rgba(255, 255, 255, 1)'); // Solid white center
+            gradient.addColorStop(0.5, 'rgba(255, 255, 255, 0.9)'); // Less fade for reduced blur
+            gradient.addColorStop(1, 'rgba(255, 255, 255, 0)'); // Fully transparent edge
+            
+            // Draw circle
+            ctx.fillStyle = gradient;
+            ctx.beginPath();
+            ctx.arc(center, center, radius, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Create texture
+            const texture = new THREE.CanvasTexture(canvas);
+            texture.needsUpdate = true;
+            return texture;
+          })()}
+          alphaTest={0.01} // This helps with transparency rendering
+          depthWrite={false} // Prevents depth buffer issues with transparent particles
+        />
       </points>
+      
+      {/* Subtle atmospheric glow */}
+      <mesh position={[0, 0, -25]}>
+        <sphereGeometry args={[40, 32, 32]} />
+        <meshBasicMaterial 
+          color="#0a1025" 
+          side={THREE.BackSide} 
+          transparent={true} 
+          opacity={0.2}
+        />
+      </mesh>
     </>
   );
 }
@@ -342,8 +476,10 @@ export default function HeroScene() {
         {/* Extended background */}
         <ExtendedBackground />
         
-        {/* Code Galaxy visualization */}
-        <CodeGalaxy />
+        {/* Code Galaxy visualization - positioned on the left side of the screen */}
+        <group position={[-5, 0, 0]}>
+          <CodeGalaxy />
+        </group>
       </Canvas>
     </div>
   );

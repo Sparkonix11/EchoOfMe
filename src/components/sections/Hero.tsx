@@ -29,6 +29,11 @@ const itemVariants = {
 export default function Hero() {
   return (
     <section id="hero" className="relative min-h-screen bg-black text-white flex items-center justify-center overflow-hidden">
+      {/* Full-screen Three.js background */}
+      <div className="absolute inset-0 z-0">
+        <HeroScene />
+      </div>
+      
       {/* Background elements (circles) */}
       <div className="absolute -top-1/4 -left-1/4 w-1/2 h-1/2 bg-neutral-900 rounded-full opacity-30"></div>
       <div className="absolute -bottom-1/4 -right-1/4 w-1/2 h-1/2 bg-neutral-900 rounded-full opacity-30"></div>
@@ -42,14 +47,11 @@ export default function Hero() {
       {/* Vertical line left */}
       <div className="absolute top-1/2 left-10 w-0.5 h-1/4 bg-neutral-700 transform -translate-y-1/2"></div>
 
-
       {/* Main Content Area */}
       <div className="container-modern relative z-10 flex flex-col md:flex-row items-center">
-        {/* 3D Scene Area (Left) */}
+        {/* 3D Scene Area (Left) - This is now just a placeholder for layout, the actual scene is in the background */}
         <div className="w-full md:w-1/2 h-[500px] mb-10 md:mb-0 relative">
-          <div className="absolute inset-0 z-10">
-            <HeroScene />
-          </div>
+          {/* This div is now empty as the 3D scene is in the background, but we keep it for layout */}
         </div>
 
         {/* Text Area (Right or Center based on design) */}
