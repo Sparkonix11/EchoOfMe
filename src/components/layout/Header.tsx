@@ -1,13 +1,12 @@
 import { useState, useEffect } from 'react';
-import { Link } from "react-router-dom";
 import { motion } from 'framer-motion';
 
 const navItems = [
-  { name: 'Home', href: '/#hero' },
-  { name: 'About', href: '/#about' },
-  { name: 'Projects', href: '/#projects' },
-  { name: 'Skills', href: '/#skills' },
-  { name: 'Contact', href: '/#contact' },
+  { name: 'Home', href: '#hero' },
+  { name: 'About', href: '#about' },
+  { name: 'Projects', href: '#projects' },
+  { name: 'Skills', href: '#skills' },
+  { name: 'Contact', href: '#contact' },
 ];
 
 export default function Header() {
@@ -39,6 +38,27 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Function to handle smooth scrolling to sections
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const targetId = href.replace('#', '');
+    const element = document.getElementById(targetId);
+    
+    if (element) {
+      // Close mobile menu if open
+      setIsMobileMenuOpen(false);
+      
+      // Scroll to the element
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+      
+      // Update URL hash without page jump (optional)
+      window.history.pushState(null, '', href);
+    }
+  };
+
   return (
     <header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -48,7 +68,7 @@ export default function Header() {
       <div className="container-modern">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center">
+          <a href="#hero" onClick={(e) => handleNavClick(e, '#hero')} className="flex items-center">
             <motion.span 
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -57,7 +77,7 @@ export default function Header() {
             >
               abhishek.
             </motion.span>
-          </Link>
+          </a>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center">
@@ -69,8 +89,9 @@ export default function Header() {
                 
                 return (
                   <li key={item.name}>
-                    <Link
-                      to={item.href}
+                    <a
+                      href={item.href}
+                      onClick={(e) => handleNavClick(e, item.href)}
                       className={`relative px-1 py-2 text-sm font-medium transition-colors ${
                         isActive 
                           ? 'text-white' 
@@ -85,7 +106,7 @@ export default function Header() {
                           transition={{ duration: 0.3 }}
                         />
                       )}
-                    </Link>
+                    </a>
                   </li>
                 );
               })}
@@ -149,20 +170,20 @@ export default function Header() {
                 
                 return (
                   <li key={item.name}>
-                    <Link
-                      to={item.href}
+                    <a
+                      href={item.href}
+                      onClick={(e) => handleNavClick(e, item.href)}
                       className={`block px-1 py-2 text-lg font-medium transition-colors ${
                         isActive 
                           ? 'text-white' 
                           : 'text-neutral-400 hover:text-white'
                       }`}
-                      onClick={() => setIsMobileMenuOpen(false)}
                     >
                       {item.name}
                       {isActive && (
                         <span className="block w-8 h-0.5 bg-white mt-1"></span>
                       )}
-                    </Link>
+                    </a>
                   </li>
                 );
               })}

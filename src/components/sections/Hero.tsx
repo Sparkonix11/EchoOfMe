@@ -49,12 +49,12 @@ export default function Hero() {
 
       {/* Main Content Area */}
       <div className="container-modern relative z-10 flex flex-col md:flex-row items-center">
-        {/* 3D Scene Area (Left) - This is now just a placeholder for layout, the actual scene is in the background */}
-        <div className="w-full md:w-1/2 h-[500px] mb-10 md:mb-0 relative">
-          {/* This div is now empty as the 3D scene is in the background, but we keep it for layout */}
+        {/* Placeholder for 3D scene area - this is for layout purposes, actual scene is in the background */}
+        <div className="w-full md:w-1/2 h-[300px] md:h-[500px] mb-10 md:mb-0 relative">
+          {/* This div is empty as the 3D scene is in the background */}
         </div>
 
-        {/* Text Area (Right or Center based on design) */}
+        {/* Text Area - Positioned at the bottom on mobile, right on desktop */}
         <div className="w-full md:w-1/2 text-center md:text-left md:pl-16 z-20">
           <motion.div
             variants={containerVariants}

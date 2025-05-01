@@ -2,6 +2,29 @@ import { useRef, useState, useEffect, useMemo } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 
+// Custom hook for responsive positioning
+function useMediaQuery(query: string): boolean {
+  const [matches, setMatches] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia(query);
+    const updateMatch = () => {
+      setMatches(media.matches);
+    };
+    
+    // Set initial value
+    updateMatch();
+    
+    // Setup listeners for screen size changes
+    media.addEventListener('change', updateMatch);
+    return () => {
+      media.removeEventListener('change', updateMatch);
+    };
+  }, [query]);
+
+  return matches;
+}
+
 // CodeGalaxy component - a creative 3D visualization related to coding/development
 function CodeGalaxy() {
   const groupRef = useRef<THREE.Group>(null);
@@ -455,6 +478,9 @@ function ExtendedBackground() {
 }
 
 export default function HeroScene() {
+  // Use media query to determine if we're on mobile
+  const isMobile = useMediaQuery('(max-width: 768px)');
+  
   return (
     <div className="w-full h-full" style={{ backgroundColor: "#000000" }}> {/* Ensure base div has black background */}
       <Canvas
@@ -476,8 +502,8 @@ export default function HeroScene() {
         {/* Extended background */}
         <ExtendedBackground />
         
-        {/* Code Galaxy visualization - positioned on the left side of the screen */}
-        <group position={[-5, 0, 0]}>
+        {/* Code Galaxy visualization - positioned based on screen size */}
+        <group position={isMobile ? [0, 0, 0] : [-5, 0, 0]}>
           <CodeGalaxy />
         </group>
       </Canvas>

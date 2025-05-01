@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { motion } from 'framer-motion';
 import { SiGithub, SiLeetcode, SiLinkedin } from "react-icons/si";
 
@@ -25,6 +24,14 @@ const socialLinks = [
       <SiLinkedin />
     ),
   },
+];
+
+// Navigation links
+const navLinks = [
+  { name: 'About', path: '#about' },
+  { name: 'Projects', path: '#projects' },
+  { name: 'Skills', path: '#skills' },
+  { name: 'Experience', path: '#experience' }
 ];
 
 // Animation variants
@@ -55,6 +62,24 @@ const itemVariants = {
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
+  // Function to handle smooth scrolling to sections
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const targetId = href.replace('#', '');
+    const element = document.getElementById(targetId);
+    
+    if (element) {
+      // Scroll to the element
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+      
+      // Update URL hash without page jump
+      window.history.pushState(null, '', href);
+    }
+  };
+
   return (
     <footer className="border-t border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900">
       <div className="container-modern py-16">
@@ -67,11 +92,11 @@ export default function Footer() {
         >
           {/* Brand Column */}
           <motion.div variants={itemVariants} className="col-span-12 md:col-span-4 mb-10 md:mb-0">
-            <Link to="/" className="inline-block mb-6">
+            <a href="#hero" onClick={(e) => handleNavClick(e, '#hero')} className="inline-block mb-6">
               <span className="text-3xl font-extrabold tracking-tight text-gradient">
                 Echo of Me
               </span>
-            </Link>
+            </a>
             <p className="text-neutral-600 dark:text-neutral-400 mb-6 max-w-md">
               A showcase of my journey, skills, and projects as I navigate through my college education and beyond.
             </p>
@@ -97,19 +122,15 @@ export default function Footer() {
               Navigation
             </h3>
             <ul className="space-y-4">
-              {[
-                { name: 'About', path: '/#about' },
-                { name: 'Projects', path: '/#projects' },
-                { name: 'Skills', path: '/#skills' },
-                { name: 'Experience', path: '/#experience' }
-              ].map((link) => (
+              {navLinks.map((link) => (
                 <li key={link.name}>
-                  <Link 
-                    to={link.path} 
+                  <a 
+                    href={link.path}
+                    onClick={(e) => handleNavClick(e, link.path)}
                     className="text-neutral-600 dark:text-neutral-400 hover:text-primary dark:hover:text-primary-light transition-colors"
                   >
                     {link.name}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -130,12 +151,13 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <Link 
-                  to="/#contact"
+                <a 
+                  href="#contact"
+                  onClick={(e) => handleNavClick(e, '#contact')}
                   className="text-neutral-600 dark:text-neutral-400 hover:text-primary dark:hover:text-primary-light transition-colors"
                 >
                   Contact Form
-                </Link>
+                </a>
               </li>
               <li>
                 <span className="text-neutral-600 dark:text-neutral-400">
@@ -177,12 +199,6 @@ export default function Footer() {
               © {currentYear} EchoOfMe. All rights reserved.
             </p>
             <div className="flex gap-6">
-              {/* <Link to="/privacy" className="text-neutral-500 dark:text-neutral-400 text-sm hover:text-primary dark:hover:text-primary-light transition-colors">
-                Privacy Policy
-              </Link>
-              <Link to="/terms" className="text-neutral-500 dark:text-neutral-400 text-sm hover:text-primary dark:hover:text-primary-light transition-colors">
-                Terms of Use
-              </Link> */}
               <span className="text-neutral-400 dark:text-neutral-500 text-sm">
                 Built with React.js & Three.js
               </span>
