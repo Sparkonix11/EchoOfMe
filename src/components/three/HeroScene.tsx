@@ -310,16 +310,16 @@ function ExtendedBackground() {
       velocity[i3 + 1] = (Math.random() - 0.5) * 0.008; // Y velocity
       velocity[i3 + 2] = (Math.random() - 0.5) * 0.004; // Z velocity
       
-      // Size - MICROSCOPIC particles - almost invisible dots
+      // Size - Make particles significantly smaller
       const distanceFromCenter = Math.sqrt(
         Math.pow(positions[i3], 2) + 
         Math.pow(positions[i3 + 1], 2)
       );
       
-      // Scale sizes based on distance - use microscopic values
+      // Scale sizes based on distance - use extremely small values
       const sizeVariation = Math.max(0.4, 1 - distanceFromCenter / 80);
-      // Make particles truly microscopic
-      sizes[i] = (Math.random() * 0.0000025 + 0.0000015) * sizeVariation;
+      // Make particles much smaller (reduced by multiple orders of magnitude)
+      sizes[i] = (Math.random() * 0.00000025 + 0.00000015) * sizeVariation;
       
       // Colors - bright enough to be visible despite tiny size
       const colorIntensity = Math.random() * 0.3 + 0.7; // 0.7 to 1.0
@@ -360,8 +360,8 @@ function ExtendedBackground() {
         positions[i3] += Math.sin(time * 0.2 + i * 0.1) * 0.003;
         positions[i3 + 1] += Math.cos(time * 0.15 + i * 0.05) * 0.003;
         
-        // "Breathing" effect - subtle size variation (reduced amplitude)
-        sizes[i] = (Math.sin(time * 0.3 + i * 0.5) * 0.000005 + 0.00001) * 
+        // "Breathing" effect - subtle size variation with extremely small amplitude
+        sizes[i] = (Math.sin(time * 0.3 + i * 0.5) * 0.0000001 + 0.0000005) * 
                    (1 - Math.abs(positions[i3 + 2]) / 60); // Size varies with Z distance
         
         // Boundary check - if a particle goes too far, reset its position
@@ -396,7 +396,7 @@ function ExtendedBackground() {
       {/* Animated particles */}
       <points ref={particlesRef} geometry={particlesGeometry}>
         <pointsMaterial
-          size={1}
+          size={0.2} // Dramatically reduced size (from 1 to 0.05)
           sizeAttenuation={true}
           transparent={true}
           opacity={0.75} // Increased opacity for more brightness
