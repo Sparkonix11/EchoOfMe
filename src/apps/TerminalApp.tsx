@@ -32,7 +32,7 @@ const NEOFETCH_INFO: [string, string][] = [
   ['OS', 'abhishek-OS 26.10'],
   ['Role', 'Full-stack + AI Engineer'],
   ['Uptime', '4 years of shipping'],
-  ['Users', '4,100+ on SignSetu Connect'],
+  ['Users', '4K+ on SignSetu Connect'],
   ['Data', '42K judgments · 1.4M chunks'],
   ['Shell', 'LeetCode 1854 (Knight)'],
   ['Stack', 'Next.js · Expo · LangGraph · pgvector'],
@@ -113,7 +113,7 @@ export default function TerminalApp() {
       case 'git':
         if (arg === 'log')
           return print(
-            out('2,153 commits  SignSetu — web, API, payments & Expo monorepo'),
+            out(' 2K+ commits  SignSetu — web, API, payments & Expo monorepo'),
             out('  668 commits  GyanAlign — legal RAG + LangGraph agent'),
             out('   98 commits  Research Assistant Agent — GraphRAG, MCP, Yjs'),
             out('   59 commits  Amorcer — clinic site generator (acquired)'),
