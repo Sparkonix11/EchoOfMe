@@ -16,7 +16,7 @@ export const profile = {
 };
 
 export const stats = [
-  { value: '4,100+', label: 'users on SignSetu Connect' },
+  { value: '4K+', label: 'users on SignSetu Connect' },
   { value: '42K+', label: 'Supreme Court judgments indexed' },
   { value: '1.4M+', label: 'embedded chunks in production' },
   { value: 'Forbes', label: 'Accessibility 200 (2026)' },
@@ -43,11 +43,11 @@ export const experience: Role[] = [
     period: 'Mar 2026 — Present',
     location: 'Chennai, India',
     points: [
-      'Launched the Connect app (Expo) in Jun 2026: 4,100+ users and 80K+ game plays in four months.',
-      'Own the Turborepo monorepo for the Next.js web app, API and mobile app, with 135 typed APIs.',
-      'Merged web and mobile accounts into one, migrating 140K records across MongoDB and Postgres.',
-      'Upgraded to Expo SDK 57 (Hermes) in v1.2.0, cutting p90 time-to-first-render 27% (3.0s → 2.2s), measured with EAS Observe.',
-      'Added offline media caching, over-the-air updates and push notifications for 1,000+ devices.',
+      'Built the Connect app (Expo), which reached 4K+ users and 75K+ game plays within four months of launch.',
+      'Built service layers, Zod validation, Redis rate limits and Razorpay webhooks in the company Turborepo monorepo (Next.js web, API, Expo mobile).',
+      'Merged web and mobile accounts by migrating 100K+ records across MongoDB and Postgres, with dry runs, backups and rollback.',
+      'Upgraded to Expo SDK 57 (Hermes), cutting p90 time-to-first-render by 25%+ on Android, measured with EAS Observe.',
+      'Added offline media caching, over-the-air updates and push notifications reaching 1K+ devices.',
     ],
     stack: ['Next.js', 'Expo', 'TypeScript', 'MongoDB', 'Postgres', 'Supabase', 'Redis'],
   },
@@ -57,9 +57,9 @@ export const experience: Role[] = [
     period: 'May 2025 — Feb 2026',
     location: 'Chennai, India',
     points: [
-      'Built 9 sign language games played 92K+ times across web and mobile.',
-      'Developed the admin CMS used to publish 559 lessons, 1.8K vocab words and 8.5K media files.',
-      'Wrote 29 Playwright E2E tests covering login, lessons, games and admin CRUD, run in GitHub Actions.',
+      'Built 8+ sign language games played 90K+ times across web and mobile.',
+      'Developed the admin CMS used to publish 500+ lessons, 1.5K+ vocab words and 8K+ media files.',
+      'Wrote 25+ Playwright E2E tests covering login, lessons, games and admin CRUD, run in GitHub Actions.',
     ],
     stack: ['React 19', 'Next.js', 'MongoDB', 'Playwright'],
   },
@@ -88,11 +88,11 @@ export const experience: Role[] = [
     period: 'Jun 2025 — Dec 2025',
     location: 'Remote, US',
     points: [
-      'Owned the site generator, GPT-4o logo generation and appointment booking for a platform later acquired by 3Y Health.',
+      'Owned the site generator, AI logo generation and appointment booking for a platform later acquired by 3Y Health.',
       'Automated clinic website launch: generate a Next.js site, push it to GitHub and deploy on Vercel.',
       'Used Pinecone search over 70+ UI components to pick the right sections for each site.',
     ],
-    stack: ['Next.js', 'Pinecone', 'GitHub API', 'Vercel API', 'GPT-4o'],
+    stack: ['Next.js', 'Pinecone', 'GitHub API', 'Vercel API', 'OpenAI'],
   },
 ];
 

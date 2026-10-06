@@ -5,7 +5,7 @@ const LINES = [
   'Copyright (C) 2022-2026 IIT Madras Data Science',
   '',
   'Checking memory ................ 1.4M chunks  OK',
-  'Mounting SignSetu.app .......... 4,100 users  OK',
+  'Mounting SignSetu.app .......... 4K+ users    OK',
   'Loading GyanAlign.dll .......... 42K judgments OK',
   'Starting LangGraph agents ...... 18 nodes     OK',
   'Calibrating Connect Four bot ... ready        OK',
