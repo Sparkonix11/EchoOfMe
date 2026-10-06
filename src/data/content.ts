@@ -7,7 +7,8 @@ export const profile = {
     'I build production web, mobile and AI systems — from a sign language app used by thousands to legal research AI over 42K+ Supreme Court judgments.',
   location: 'Chennai, India',
   email: 'abhishekbidhan11@gmail.com',
-  resumeUrl: '/resume.pdf',
+  resumeUrl: '/resume.pdf', // AI / full-stack version
+  resumeSdeUrl: '/resume-sde.pdf', // SDE / backend version
   links: {
     github: 'https://github.com/Sparkonix11',
     linkedin: 'https://www.linkedin.com/in/abhishek1102',
