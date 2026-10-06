@@ -1,48 +1,45 @@
-import {Helmet} from "react-helmet";
-import { BrowserRouter as Router } from 'react-router-dom';
-import './App.css';
+import { useCallback, useState } from 'react';
+import Boot from './os/Boot';
+import Desktop from './os/Desktop';
+import EggsProvider from './os/EggsProvider';
+import WindowManager from './os/WindowManager';
 
+const BOOTED = 'abhishek-os:booted';
 
-// Section components
-import Hero from './components/sections/Hero';
-import About from './components/sections/About';
-import Projects from './components/sections/Projects';
-import Skills from './components/sections/Skills';
-import Contact from './components/sections/Contact';
-
-// Layout components
-import Header from './components/layout/Header';
-import Footer from './components/layout/Footer';
-import SideNavDots from './components/layout/SideNavDots';
-import CustomCursor from './components/ui/CustomCursor';
-import { ThemeProvider } from './lib/theme-context';
-
-function App() {
-  return (
-    <Router>
-      <ThemeProvider>
-        <Helmet>
-          <meta name="description" content="A portfolio showcasing my journey, skills, and projects as a college student." />
-          <meta name="keywords" content="portfolio, college, student, projects, skills, resume" />
-          <html lang="en" className="scroll-smooth has-custom-cursor" />
-        </Helmet>
-        
-        <div className="flex flex-col min-h-screen">
-          <Header />
-          <SideNavDots />
-          <main className="flex-grow">
-            <Hero />
-            <About />
-            <Projects />
-            <Skills />
-            <Contact />
-          </main>
-          <Footer />
-        </div>
-        <CustomCursor />
-      </ThemeProvider>
-    </Router>
-  );
+// Boot once per browser session, and never when the visitor prefers reduced motion.
+function shouldBoot() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return false;
+  try {
+    return sessionStorage.getItem(BOOTED) !== '1';
+  } catch {
+    return true;
+  }
 }
 
-export default App;
+export default function App() {
+  const [booting, setBooting] = useState(shouldBoot);
+  const [session, setSession] = useState(0);
+
+  const finishBoot = useCallback(() => {
+    setBooting(false);
+    try {
+      sessionStorage.setItem(BOOTED, '1');
+    } catch {
+      // Storage unavailable — the boot screen will simply show again next visit.
+    }
+  }, []);
+
+  const restart = useCallback(() => {
+    setSession((s) => s + 1);
+    setBooting(true);
+  }, []);
+
+  return (
+    <EggsProvider>
+      <WindowManager key={session} initial={['welcome']}>
+        <Desktop onShutdown={restart} />
+      </WindowManager>
+      {booting && <Boot onDone={finishBoot} />}
+    </EggsProvider>
+  );
+}

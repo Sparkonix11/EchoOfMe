@@ -1,54 +1,44 @@
-# React + TypeScript + Vite
+# abhishek-OS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+My portfolio, built as a retro desktop operating system: a boot screen, draggable windows, a working
+terminal, a Connect Four bot, skills as a game inventory and 5 hidden achievements. On phones it becomes a
+home screen with full-screen apps.
 
-Currently, two official plugins are available:
+Built with React 19, Vite and Tailwind CSS v4. No UI or animation libraries; the pixel icons are hand-drawn
+12×12 maps in [`src/os/pixel.tsx`](src/os/pixel.tsx).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Structure
 
-## Expanding the ESLint configuration
+- `src/os/` — the "operating system": window manager, windows, taskbar and start menu, boot screen, achievements
+- `src/apps/` — one component per app window (About, Experience, Projects, Inventory, Terminal, Connect 4, …)
+- `src/data/content.ts` — all text: profile, experience, projects, achievements, skills
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Editing content
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+All text lives in [`src/data/content.ts`](src/data/content.ts). App windows are listed in
+[`src/os/appMeta.ts`](src/os/appMeta.ts) (title, icon, colour, default size).
+
+The résumé button links to `/resume.pdf`. Export the résumé from Overleaf and save it as
+`public/resume.pdf`.
+
+## Local development
+
+```bash
+npm install
+npm run dev        # http://localhost:5173
+npm run build      # type-check + production build into dist/
+npm run preview    # serve the production build
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Deploying to Vercel
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1. Push this repo to GitHub.
+2. In Vercel, **Add New → Project** and import `Sparkonix11/EchoOfMe`.
+3. Vercel reads `vercel.json` (Vite preset, `npm run build`, output `dist`). Click **Deploy**.
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+Every push to `main` redeploys automatically; other branches get preview URLs.
+
+### Custom domain (optional)
+
+In the Vercel project, open **Settings → Domains**, add your domain, and set the DNS records Vercel shows
+(an `A` record to `76.76.21.21` for the apex domain, or a `CNAME` to `cname.vercel-dns.com` for a subdomain).
