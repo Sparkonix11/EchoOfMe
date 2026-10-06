@@ -13,8 +13,7 @@ const HELP = [
   'open <app>    open an app, e.g. open projects',
   'git log       recent commits (real numbers)',
   'leetcode      competitive programming stats',
-  'resume        open résumé.pdf (AI / full-stack)',
-  'resume-sde    open the SDE / backend résumé',
+  'resume        open résumé.pdf',
   'play          challenge the Connect Four bot',
   'sudo hire-me  you know you want to',
   'clear         clear the screen',
@@ -97,22 +96,20 @@ export default function TerminalApp() {
       case 'neofetch':
         return print(out(<Neofetch />));
       case 'ls':
-        return print(out([...ALL_APP_IDS, 'resume.pdf', 'resume-sde.pdf'].join('   ')));
+        return print(out([...ALL_APP_IDS, 'resume.pdf'].join('   ')));
       case 'open': {
         if (ALL_APP_IDS.includes(arg as AppId)) {
           open(arg as AppId);
           return print({ kind: 'ok', text: `opening ${arg}…` });
         }
-        if (arg.startsWith('resume')) return openResume(arg.includes('sde'));
+        if (arg.startsWith('resume')) return openResume();
         return print({ kind: 'err', text: `open: no such app '${arg}'. Try \`ls\`.` });
       }
       case 'cat':
-        if (arg.startsWith('resume')) return openResume(arg.includes('sde'));
+        if (arg.startsWith('resume')) return openResume();
         return print({ kind: 'err', text: `cat: ${arg || 'nothing'}: try \`open ${arg || 'projects'}\` instead` });
       case 'resume':
-        return openResume(arg === 'sde' || arg === '--sde');
-      case 'resume-sde':
-        return openResume(true);
+        return openResume();
       case 'git':
         if (arg === 'log')
           return print(
@@ -159,9 +156,9 @@ export default function TerminalApp() {
     }
   };
 
-  const openResume = (sde = false) => {
-    window.open(sde ? profile.resumeSdeUrl : profile.resumeUrl, '_blank', 'noopener');
-    print({ kind: 'ok', text: `opening ${sde ? 'resume-sde.pdf' : 'resume.pdf'} in a new tab…` });
+  const openResume = () => {
+    window.open(profile.resumeUrl, '_blank', 'noopener');
+    print({ kind: 'ok', text: 'opening resume.pdf in a new tab…' });
   };
 
   const onKey = (e: KeyboardEvent<HTMLInputElement>) => {

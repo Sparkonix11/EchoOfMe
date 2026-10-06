@@ -18,9 +18,8 @@ Built with React 19, Vite and Tailwind CSS v4. No UI or animation libraries; the
 All text lives in [`src/data/content.ts`](src/data/content.ts). App windows are listed in
 [`src/os/appMeta.ts`](src/os/appMeta.ts) (title, icon, colour, default size).
 
-Résumés live in `public/`: `resume.pdf` (AI / full-stack, linked from the desktop and Welcome window) and
-`resume-sde.pdf` (SDE / backend, in the start menu and via `resume-sde` in the terminal). Re-export from
-Overleaf with the same names to update them.
+The résumé lives at `public/resume.pdf` (desktop icon, Welcome window, start menu and the `resume`
+terminal command). Re-export it from Overleaf with the same name to update it.
 
 ## Local development
 

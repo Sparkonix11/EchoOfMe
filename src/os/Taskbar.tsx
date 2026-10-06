@@ -68,18 +68,7 @@ export default function Taskbar({ onShutdown }: { onShutdown: () => void }) {
                 className="flex items-center gap-3 px-3 py-1.5 text-sm hover:bg-ink hover:text-cream"
               >
                 <PixelIcon name="document" size={22} />
-                Résumé — AI / full-stack
-              </a>
-            </li>
-            <li>
-              <a
-                href={profile.resumeSdeUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-3 px-3 py-1.5 text-sm hover:bg-ink hover:text-cream"
-              >
-                <PixelIcon name="document" size={22} />
-                Résumé — SDE / backend
+                Résumé (PDF)
               </a>
             </li>
             <li>
