@@ -7,8 +7,7 @@ export const profile = {
     'I build production web, mobile and AI systems — from a sign language app used by thousands to legal research AI over 42K+ Supreme Court judgments.',
   location: 'Chennai, India',
   email: 'abhishekbidhan11@gmail.com',
-  resumeUrl: '/resume.pdf', // AI / full-stack version
-  resumeSdeUrl: '/resume-sde.pdf', // SDE / backend version
+  resumeUrl: '/resume.pdf',
   links: {
     github: 'https://github.com/Sparkonix11',
     linkedin: 'https://www.linkedin.com/in/abhishek1102',
@@ -47,7 +46,7 @@ export const experience: Role[] = [
       'Launched the Connect app (Expo) in Jun 2026: 4,100+ users and 80K+ game plays in four months.',
       'Own the Turborepo monorepo for the Next.js web app, API and mobile app, with 135 typed APIs.',
       'Merged web and mobile accounts into one, migrating 140K records across MongoDB and Postgres.',
-      'Shipped v1.2.0 on Expo SDK 57, cutting p90 screen render time by 27% (3.0s → 2.2s), measured with EAS Observe.',
+      'Upgraded to Expo SDK 57 (Hermes) in v1.2.0, cutting p90 time-to-first-render 27% (3.0s → 2.2s), measured with EAS Observe.',
       'Added offline media caching, over-the-air updates and push notifications for 1,000+ devices.',
     ],
     stack: ['Next.js', 'Expo', 'TypeScript', 'MongoDB', 'Postgres', 'Supabase', 'Redis'],
@@ -73,8 +72,9 @@ export const experience: Role[] = [
     location: 'Remote',
     points: [
       'Created a legal research AI over 42K+ Supreme Court judgments (1950–2026) and Indian statutes.',
-      'Split documents by Section/Article into 1.4M+ chunks, stored in pgvector and searched via Pinecone.',
-      'Designed an 18-node LangGraph agent with reranking, citation checks and Tavily web fallback.',
+      'Indexed 1.4M+ Section/Article chunks in pgvector as the source of truth, batch-syncing to Pinecone for retrieval.',
+      'Designed an 18-node LangGraph agent with authority reranking, citation checks and Tavily web fallback.',
+      'Evaluated it on 749 shadow runs of production queries: 98.9% completed, averaging $0.015 per answer.',
       'Implemented Razorpay subscriptions with AI usage limits, student–recruiter matching and 7 user roles.',
     ],
     stack: ['LangGraph', 'pgvector', 'Pinecone', 'Next.js', 'Prisma', 'tRPC'],
@@ -88,7 +88,7 @@ export const experience: Role[] = [
     period: 'Jun 2025 — Dec 2025',
     location: 'Remote, US',
     points: [
-      'Built core features of the virtual clinic platform that 3Y Health acquired for its technology.',
+      'Owned the site generator, GPT-4o logo generation and appointment booking for a platform later acquired by 3Y Health.',
       'Automated clinic website launch: generate a Next.js site, push it to GitHub and deploy on Vercel.',
       'Used Pinecone search over 70+ UI components to pick the right sections for each site.',
     ],
@@ -111,7 +111,7 @@ export const projects: Project[] = [
     summary: 'An agentic research workspace that turns a research goal into a grounded plan.',
     points: [
       'LangGraph agent that plans, drafts and critiques research roadmaps in up to 4 rounds.',
-      'GraphRAG: papers turned into a knowledge graph of entities and relations on pgvector.',
+      'GraphRAG: LLM-extracted entities and relations; multi-hop traversal adds linked passages as evidence.',
       'Postgres job queue, sandboxed code runs (E2B), MCP tools and live co-editing (Yjs).',
     ],
     stack: ['FastAPI', 'Next.js', 'LangGraph', 'pgvector', 'MCP', 'Yjs', 'gRPC', 'Docker'],
@@ -152,7 +152,7 @@ export const projects: Project[] = [
 export const achievements = [
   {
     title: 'Forbes Accessibility 200 (2026)',
-    detail: 'Core developer of SignSetu, featured for its work in inclusive education. Also a Purple Fest 2025 winner.',
+    detail: 'SignSetu, where I am a core developer, was featured for its work in inclusive education. It was also a Purple Fest 2025 Pitch Fest winner.',
   },
   {
     title: 'Google Code to Learn — Finalist',
