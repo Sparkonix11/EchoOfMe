@@ -43,7 +43,7 @@ export const experience: Role[] = [
     period: 'Mar 2026 — Present',
     location: 'Chennai, India',
     points: [
-      'Built the Connect app (Expo), which reached 4K+ users and 75K+ game plays within four months of launch.',
+      'Core developer of the Connect app (Expo), which reached 4K+ users and 75K+ game plays within four months of launch.',
       'Built Razorpay payments with signature-verified, deduplicated webhooks, idempotent entitlement grants and a 5-minute reconciliation job.',
       'Merged web and mobile accounts by migrating 100K+ records across MongoDB and Postgres, with dry runs, backups and rollback.',
       'Upgraded to Expo SDK 57 (Hermes), cutting p90 time-to-first-render 27% (3.0s → 2.2s) on Android, measured with EAS Observe.',
