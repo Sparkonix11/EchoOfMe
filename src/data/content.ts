@@ -46,7 +46,7 @@ export const experience: Role[] = [
       'Built the Connect app (Expo), which reached 4K+ users and 75K+ game plays within four months of launch.',
       'Built Razorpay payments with signature-verified, deduplicated webhooks, idempotent entitlement grants and a 5-minute reconciliation job.',
       'Merged web and mobile accounts by migrating 100K+ records across MongoDB and Postgres, with dry runs, backups and rollback.',
-      'Upgraded to Expo SDK 57 (Hermes), cutting p90 time-to-first-render by 25%+ on Android, measured with EAS Observe.',
+      'Upgraded to Expo SDK 57 (Hermes), cutting p90 time-to-first-render 27% (3.0s → 2.2s) on Android, measured with EAS Observe.',
       'Added offline media caching, over-the-air updates and push notifications reaching 1K+ devices.',
     ],
     stack: ['Next.js', 'Expo', 'TypeScript', 'MongoDB', 'Postgres', 'Supabase', 'Redis'],
