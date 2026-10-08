@@ -107,6 +107,16 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    name: 'Conversational Expense Tracker',
+    summary: 'Log and query shared expenses in plain language over WhatsApp — "500 to carpenter via UPI", "how much last month?".',
+    points: [
+      'A 20+ node LangGraph agent parses intent, resolves payees and vendors, asks for clarification and runs the right tool.',
+      'Messages flow through a BullMQ + Redis queue; Postgres checkpoints let confirmations resume after worker restarts.',
+      'Receipt OCR, budgets, recurring expenses and privacy-safe logging with phone numbers and message text redacted.',
+    ],
+    stack: ['TypeScript', 'Fastify', 'LangGraph', 'BullMQ', 'Redis', 'PostgreSQL', 'Prisma', 'OpenAI'],
+  },
+  {
     name: 'Research Assistant Agent',
     summary: 'An agentic research workspace that turns a research goal into a grounded plan.',
     points: [
@@ -115,7 +125,6 @@ export const projects: Project[] = [
       'Postgres job queue, sandboxed code runs (E2B), MCP tools and live co-editing (Yjs).',
     ],
     stack: ['FastAPI', 'Next.js', 'LangGraph', 'pgvector', 'MCP', 'Yjs', 'gRPC', 'Docker'],
-    github: 'https://github.com/Sparkonix11/Research-Assistant-Agent',
   },
   {
     name: 'Regional Dialect Synthesis Pipeline',
